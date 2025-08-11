@@ -134,18 +134,16 @@ public class CB_Project_Craps
         System.out.println("\n" + playerArray[opponentId] + ", " + playerArray[shooterId] + " has bet $" + shooterBet + " how much of the $" + remainingActionAmount +" remaining action do you want?");
         System.out.print("Enter your bet, minimum of $10 up to $" + remainingActionAmount + ", or your bank balance, whichever is less: $" );
         opponentBet = input.nextInt();
-        totalOpponentBet = totalOpponentBet + opponentBet;
         betIsValid = CB_Project_Methods.validateOpponentBet(opponentId, opponentBet, bankRollArray, minBet, remainingActionAmount);
         
         while (betIsValid == false) //while loop to verify opponent bet is valid.
         {
          System.out.print("ERROR: Enter your bet, minimum of $10 up to $" + remainingActionAmount + ", or your bank balance, whichever is less: $" );
          opponentBet = input.nextInt();
-         totalOpponentBet = 0; // reset if there was an error above.
-         totalOpponentBet = totalOpponentBet + opponentBet; // add all of the opponents bets together while traversing the array
          betIsValid = CB_Project_Methods.validateOpponentBet(opponentId, opponentBet, bankRollArray, minBet, remainingActionAmount); // validate bet
         }//end while
-           
+
+        totalOpponentBet = totalOpponentBet + opponentBet; // add all of the opponents bets together after validation
         betAmountArray[opponentId] = opponentBet;
         remainingActionAmount = remainingActionAmount - opponentBet;
         if (remainingActionAmount == 0) // checks if the shoots bet has been completely covered.
